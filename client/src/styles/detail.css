@@ -1,0 +1,53 @@
+.detail {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.detail-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.detail h2 {
+  font-size: 1.05rem;
+}
+
+.detail .body {
+  white-space: pre-wrap;
+}
+
+.detail a {
+  color: var(--accent);
+}
+
+.detail-actions {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.explain {
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+
+.explain-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.provider {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+pre.plain {
+  white-space: pre-wrap;
+  font: inherit;
+  margin: 8px 0 0;
+}

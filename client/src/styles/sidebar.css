@@ -1,0 +1,39 @@
+.sidebar {
+  background: #f6f8fa;
+  color: #1f2328;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.sidebar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.sidebar h2 {
+  font-size: 1rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.sidebar li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 0.9rem;
+}
+
+.sidebar small {
+  display: block;
+  color: #59636e;
+}

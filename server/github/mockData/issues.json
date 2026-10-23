@@ -1,0 +1,416 @@
+[
+  {
+    "id": 1001,
+    "number": 10,
+    "title": "Search box loses focus after typing one letter",
+    "body": "When typing in the notes search, the input loses focus after every keystroke. The `SearchInput` component in `src/components/SearchInput.jsx` probably re-mounts on each render. Steps: open the app and type \"abc\".",
+    "repo": "sample-org/pixel-notes",
+    "url": "https://example.com/sample-org/pixel-notes/issues/10",
+    "labels": [
+      "good first issue",
+      "bug"
+    ],
+    "daysAgo": 4,
+    "comments": 3
+  },
+  {
+    "id": 1002,
+    "number": 11,
+    "title": "Add a dark mode toggle to the settings page",
+    "body": "Users asked for a dark theme. Add a toggle in `src/pages/Settings.jsx` and store the choice in localStorage.",
+    "repo": "sample-org/pixel-notes",
+    "url": "https://example.com/sample-org/pixel-notes/issues/11",
+    "labels": [
+      "enhancement",
+      "help wanted"
+    ],
+    "daysAgo": 20,
+    "comments": 7
+  },
+  {
+    "id": 1003,
+    "number": 12,
+    "title": "Typo in the README install section",
+    "body": "The README says \"npm instal\". Please fix it in `README.md`. It is a one-line change.",
+    "repo": "sample-org/pixel-notes",
+    "url": "https://example.com/sample-org/pixel-notes/issues/12",
+    "labels": [
+      "documentation",
+      "good first issue"
+    ],
+    "daysAgo": 2,
+    "comments": 1
+  },
+  {
+    "id": 1004,
+    "number": 13,
+    "title": "Lexer crashes on empty input",
+    "body": "Calling `tokenize(\"\")` in `src/lexer.ts` throws \"Cannot read properties of undefined\". It should return an empty list.",
+    "repo": "sample-org/tiny-compiler",
+    "url": "https://example.com/sample-org/tiny-compiler/issues/13",
+    "labels": [
+      "bug",
+      "good first issue"
+    ],
+    "daysAgo": 6,
+    "comments": 4
+  },
+  {
+    "id": 1005,
+    "number": 14,
+    "title": "Add unit tests for the tokenizer",
+    "body": "There are no tests for the tokenizer. Add a few cases in `tests/tokenizer.test.ts` for numbers, strings and operators.",
+    "repo": "sample-org/tiny-compiler",
+    "url": "https://example.com/sample-org/tiny-compiler/issues/14",
+    "labels": [
+      "tests",
+      "help wanted"
+    ],
+    "daysAgo": 15,
+    "comments": 2
+  },
+  {
+    "id": 1006,
+    "number": 15,
+    "title": "Document the grammar in docs/grammar.md",
+    "body": "The grammar only exists in our heads. Write it down in `docs/grammar.md` with two or three examples.",
+    "repo": "sample-org/tiny-compiler",
+    "url": "https://example.com/sample-org/tiny-compiler/issues/15",
+    "labels": [
+      "documentation",
+      "help wanted"
+    ],
+    "daysAgo": 33,
+    "comments": 5
+  },
+  {
+    "id": 1007,
+    "number": 16,
+    "title": "CSV reader fails on files with a BOM",
+    "body": "Files saved by Excel start with a byte order mark and the first column name is garbled. See `wrangler/readers/csv.py`.",
+    "repo": "sample-org/data-wrangler",
+    "url": "https://example.com/sample-org/data-wrangler/issues/16",
+    "labels": [
+      "bug",
+      "good first issue"
+    ],
+    "daysAgo": 8,
+    "comments": 6
+  },
+  {
+    "id": 1008,
+    "number": 17,
+    "title": "Add a --version flag to the CLI",
+    "body": "Running `wrangler --version` should print the package version. The argument parser is in `wrangler/cli.py`.",
+    "repo": "sample-org/data-wrangler",
+    "url": "https://example.com/sample-org/data-wrangler/issues/17",
+    "labels": [
+      "good first issue",
+      "enhancement"
+    ],
+    "daysAgo": 1,
+    "comments": 2
+  },
+  {
+    "id": 1009,
+    "number": 18,
+    "title": "Show a progress bar for large files",
+    "body": "Converting a 1 GB file looks frozen. Show progress while reading. Check `wrangler/convert.py`.",
+    "repo": "sample-org/data-wrangler",
+    "url": "https://example.com/sample-org/data-wrangler/issues/18",
+    "labels": [
+      "enhancement",
+      "help wanted"
+    ],
+    "daysAgo": 41,
+    "comments": 9
+  },
+  {
+    "id": 1010,
+    "number": 19,
+    "title": "Planner crashes when two classes overlap",
+    "body": "Adding two classes at the same time raises a KeyError in `planner/schedule.py`. We should show a friendly warning instead.",
+    "repo": "sample-org/campus-planner",
+    "url": "https://example.com/sample-org/campus-planner/issues/19",
+    "labels": [
+      "bug",
+      "help wanted"
+    ],
+    "daysAgo": 12,
+    "comments": 8
+  },
+  {
+    "id": 1011,
+    "number": 20,
+    "title": "Add Hindi translation for the UI strings",
+    "body": "Copy `locales/en.json` to `locales/hi.json` and translate the values. No coding needed.",
+    "repo": "sample-org/campus-planner",
+    "url": "https://example.com/sample-org/campus-planner/issues/20",
+    "labels": [
+      "good first issue",
+      "enhancement"
+    ],
+    "daysAgo": 18,
+    "comments": 3
+  },
+  {
+    "id": 1012,
+    "number": 21,
+    "title": "Update CONTRIBUTING.md with setup steps",
+    "body": "The repo has no CONTRIBUTING file. Add one with setup, test and PR steps.",
+    "repo": "sample-org/campus-planner",
+    "url": "https://example.com/sample-org/campus-planner/issues/21",
+    "labels": [
+      "documentation",
+      "good first issue"
+    ],
+    "daysAgo": 27,
+    "comments": 4
+  },
+  {
+    "id": 1013,
+    "number": 22,
+    "title": "Support an --ignore-case flag",
+    "body": "Add `-i` so the search ignores letter case. Argument handling lives in `src/main.rs`.",
+    "repo": "sample-org/rusty-grep",
+    "url": "https://example.com/sample-org/rusty-grep/issues/22",
+    "labels": [
+      "good first issue",
+      "enhancement"
+    ],
+    "daysAgo": 5,
+    "comments": 5
+  },
+  {
+    "id": 1014,
+    "number": 23,
+    "title": "Colorize matches in the output",
+    "body": "Highlight the matched text in red when printing. See `src/output.rs`.",
+    "repo": "sample-org/rusty-grep",
+    "url": "https://example.com/sample-org/rusty-grep/issues/23",
+    "labels": [
+      "enhancement",
+      "help wanted"
+    ],
+    "daysAgo": 22,
+    "comments": 2
+  },
+  {
+    "id": 1015,
+    "number": 24,
+    "title": "Panic on a file with invalid UTF-8",
+    "body": "Running against a binary file panics in `src/reader.rs`. It should skip the file with a warning.",
+    "repo": "sample-org/rusty-grep",
+    "url": "https://example.com/sample-org/rusty-grep/issues/24",
+    "labels": [
+      "bug"
+    ],
+    "daysAgo": 60,
+    "comments": 11
+  },
+  {
+    "id": 1016,
+    "number": 25,
+    "title": "Add retry with backoff to the worker",
+    "body": "Failed jobs are dropped. Retry up to three times with growing delays in `worker/retry.go`.",
+    "repo": "sample-org/gopher-queue",
+    "url": "https://example.com/sample-org/gopher-queue/issues/25",
+    "labels": [
+      "help wanted",
+      "enhancement"
+    ],
+    "daysAgo": 14,
+    "comments": 6
+  },
+  {
+    "id": 1017,
+    "number": 26,
+    "title": "Improve the error message when the queue is full",
+    "body": "The message \"error 17\" is not helpful. Return a clear text from `queue/queue.go`.",
+    "repo": "sample-org/gopher-queue",
+    "url": "https://example.com/sample-org/gopher-queue/issues/26",
+    "labels": [
+      "good first issue"
+    ],
+    "daysAgo": 9,
+    "comments": 1
+  },
+  {
+    "id": 1018,
+    "number": 27,
+    "title": "Add a Makefile target for tests",
+    "body": "Add `make test` that runs `go test ./...`. Edit the `Makefile`.",
+    "repo": "sample-org/gopher-queue",
+    "url": "https://example.com/sample-org/gopher-queue/issues/27",
+    "labels": [
+      "good first issue"
+    ],
+    "daysAgo": 3,
+    "comments": 0
+  },
+  {
+    "id": 1019,
+    "number": 28,
+    "title": "Button component is missing an aria-label",
+    "body": "Icon-only buttons are not announced by screen readers. Fix `src/Button.jsx`.",
+    "repo": "sample-org/react-widgets",
+    "url": "https://example.com/sample-org/react-widgets/issues/28",
+    "labels": [
+      "accessibility",
+      "good first issue"
+    ],
+    "daysAgo": 7,
+    "comments": 4
+  },
+  {
+    "id": 1020,
+    "number": 29,
+    "title": "Tooltip flickers on hover",
+    "body": "Moving the mouse slowly over the edge makes the tooltip blink. Look at `src/Tooltip.jsx`.",
+    "repo": "sample-org/react-widgets",
+    "url": "https://example.com/sample-org/react-widgets/issues/29",
+    "labels": [
+      "bug",
+      "help wanted"
+    ],
+    "daysAgo": 16,
+    "comments": 10
+  },
+  {
+    "id": 1021,
+    "number": 30,
+    "title": "Add a Storybook story for Badge",
+    "body": "The Badge component has no story. Add `src/Badge.stories.jsx`.",
+    "repo": "sample-org/react-widgets",
+    "url": "https://example.com/sample-org/react-widgets/issues/30",
+    "labels": [
+      "help wanted"
+    ],
+    "daysAgo": 25,
+    "comments": 2
+  },
+  {
+    "id": 1022,
+    "number": 31,
+    "title": "Modal should close when Escape is pressed",
+    "body": "Listen for the Escape key in `src/Modal.jsx` and call `onClose`.",
+    "repo": "sample-org/react-widgets",
+    "url": "https://example.com/sample-org/react-widgets/issues/31",
+    "labels": [
+      "good first issue",
+      "accessibility"
+    ],
+    "daysAgo": 11,
+    "comments": 3
+  },
+  {
+    "id": 1023,
+    "number": 32,
+    "title": "Migrate old blog posts to Markdown",
+    "body": "Posts are stored as HTML. Write a small script that converts them to `.md` files.",
+    "repo": "sample-org/old-java-blog",
+    "url": "https://example.com/sample-org/old-java-blog/issues/32",
+    "labels": [
+      "help wanted",
+      "enhancement"
+    ],
+    "daysAgo": 180,
+    "comments": 12
+  },
+  {
+    "id": 1024,
+    "number": 33,
+    "title": "Broken link in the footer",
+    "body": "The \"About\" link in `templates/footer.html` points to a page that does not exist.",
+    "repo": "sample-org/old-java-blog",
+    "url": "https://example.com/sample-org/old-java-blog/issues/33",
+    "labels": [
+      "good first issue",
+      "bug"
+    ],
+    "daysAgo": 95,
+    "comments": 1
+  },
+  {
+    "id": 1025,
+    "number": 34,
+    "title": "Add a cheat sheet for list comprehensions",
+    "body": "Create `sheets/lists.md` with five short examples and when to use them.",
+    "repo": "sample-org/py-cheatsheets",
+    "url": "https://example.com/sample-org/py-cheatsheets/issues/34",
+    "labels": [
+      "documentation",
+      "good first issue"
+    ],
+    "daysAgo": 4,
+    "comments": 2
+  },
+  {
+    "id": 1026,
+    "number": 35,
+    "title": "Fix the formatting of the dict cheat sheet table",
+    "body": "The table in `sheets/dicts.md` is broken on GitHub. Fix the pipes and header row.",
+    "repo": "sample-org/py-cheatsheets",
+    "url": "https://example.com/sample-org/py-cheatsheets/issues/35",
+    "labels": [
+      "documentation"
+    ],
+    "daysAgo": 10,
+    "comments": 1
+  },
+  {
+    "id": 1027,
+    "number": 36,
+    "title": "Add examples for f-strings",
+    "body": "Show padding, number formatting and dates in `sheets/strings.md`.",
+    "repo": "sample-org/py-cheatsheets",
+    "url": "https://example.com/sample-org/py-cheatsheets/issues/36",
+    "labels": [
+      "good first issue",
+      "documentation"
+    ],
+    "daysAgo": 13,
+    "comments": 3
+  },
+  {
+    "id": 1028,
+    "number": 37,
+    "title": "Card hover animation is jerky",
+    "body": "The hover effect in `css/cards.css` jumps on Firefox. Try using `transform` instead of `margin`.",
+    "repo": "sample-org/css-garden",
+    "url": "https://example.com/sample-org/css-garden/issues/37",
+    "labels": [
+      "bug"
+    ],
+    "daysAgo": 35,
+    "comments": 4
+  },
+  {
+    "id": 1029,
+    "number": 38,
+    "title": "Add dark palette variables",
+    "body": "Create dark-theme custom properties in `css/tokens.css`.",
+    "repo": "sample-org/css-garden",
+    "url": "https://example.com/sample-org/css-garden/issues/38",
+    "labels": [
+      "help wanted",
+      "enhancement"
+    ],
+    "daysAgo": 50,
+    "comments": 6
+  },
+  {
+    "id": 1030,
+    "number": 39,
+    "title": "Contrast is too low on footer links",
+    "body": "Footer links are light grey on white. Make them pass WCAG AA in `css/footer.css`.",
+    "repo": "sample-org/css-garden",
+    "url": "https://example.com/sample-org/css-garden/issues/39",
+    "labels": [
+      "accessibility",
+      "good first issue"
+    ],
+    "daysAgo": 21,
+    "comments": 2
+  }
+]

@@ -1,0 +1,149 @@
+{
+  "sample-org/pixel-notes": {
+    "language": "JavaScript",
+    "topics": [
+      "web",
+      "notes"
+    ],
+    "health": {
+      "lastMergedPrDays": 3,
+      "responseHours": 6,
+      "mergedPrs30d": 22,
+      "hasContributing": true
+    },
+    "readme": "# pixel-notes\nA tiny notes app. Run `npm install` then `npm start`.",
+    "contributing": "Fork the repo, create a branch, make your change, and open a pull request that says \"Closes #N\". Run the tests before you push."
+  },
+  "sample-org/tiny-compiler": {
+    "language": "TypeScript",
+    "topics": [
+      "compilers",
+      "education"
+    ],
+    "health": {
+      "lastMergedPrDays": 12,
+      "responseHours": 30,
+      "mergedPrs30d": 6,
+      "hasContributing": true
+    },
+    "readme": "# tiny-compiler\nA teaching compiler written in TypeScript.",
+    "contributing": "Fork the repo, create a branch, make your change, and open a pull request that says \"Closes #N\". Run the tests before you push."
+  },
+  "sample-org/data-wrangler": {
+    "language": "Python",
+    "topics": [
+      "data",
+      "cli"
+    ],
+    "health": {
+      "lastMergedPrDays": 2,
+      "responseHours": 4,
+      "mergedPrs30d": 85,
+      "hasContributing": true
+    },
+    "readme": "# data-wrangler\nClean and convert CSV files from the command line.",
+    "contributing": "Fork the repo, create a branch, make your change, and open a pull request that says \"Closes #N\". Run the tests before you push."
+  },
+  "sample-org/campus-planner": {
+    "language": "Python",
+    "topics": [
+      "education",
+      "web"
+    ],
+    "health": {
+      "lastMergedPrDays": 45,
+      "responseHours": 120,
+      "mergedPrs30d": 1,
+      "hasContributing": false
+    },
+    "readme": "# campus-planner\nTimetable planner for students (Flask).",
+    "contributing": null
+  },
+  "sample-org/rusty-grep": {
+    "language": "Rust",
+    "topics": [
+      "cli"
+    ],
+    "health": {
+      "lastMergedPrDays": 9,
+      "responseHours": 14,
+      "mergedPrs30d": 8,
+      "hasContributing": true
+    },
+    "readme": "# rusty-grep\nA small grep clone. `cargo run -- pattern file.txt`",
+    "contributing": "Fork the repo, create a branch, make your change, and open a pull request that says \"Closes #N\". Run the tests before you push."
+  },
+  "sample-org/gopher-queue": {
+    "language": "Go",
+    "topics": [
+      "backend"
+    ],
+    "health": {
+      "lastMergedPrDays": 20,
+      "responseHours": 40,
+      "mergedPrs30d": 4,
+      "hasContributing": true
+    },
+    "readme": "# gopher-queue\nIn-memory job queue with workers.",
+    "contributing": "Fork the repo, create a branch, make your change, and open a pull request that says \"Closes #N\". Run the tests before you push."
+  },
+  "sample-org/react-widgets": {
+    "language": "JavaScript",
+    "topics": [
+      "react",
+      "ui"
+    ],
+    "health": {
+      "lastMergedPrDays": 1,
+      "responseHours": 2,
+      "mergedPrs30d": 40,
+      "hasContributing": true
+    },
+    "readme": "# react-widgets\nAccessible UI components for React.",
+    "contributing": "Fork the repo, create a branch, make your change, and open a pull request that says \"Closes #N\". Run the tests before you push."
+  },
+  "sample-org/old-java-blog": {
+    "language": "Java",
+    "topics": [
+      "web"
+    ],
+    "health": {
+      "lastMergedPrDays": 400,
+      "responseHours": 700,
+      "mergedPrs30d": 0,
+      "hasContributing": false
+    },
+    "readme": "# old-java-blog\nA blog engine from 2014.",
+    "contributing": null
+  },
+  "sample-org/py-cheatsheets": {
+    "language": "Python",
+    "topics": [
+      "docs",
+      "education"
+    ],
+    "health": {
+      "lastMergedPrDays": 6,
+      "responseHours": 10,
+      "mergedPrs30d": 15,
+      "hasContributing": true
+    },
+    "readme": "# py-cheatsheets\nOne-page Python cheat sheets.",
+    "contributing": "Fork the repo, create a branch, make your change, and open a pull request that says \"Closes #N\". Run the tests before you push."
+  },
+  "sample-org/css-garden": {
+    "language": "CSS",
+    "topics": [
+      "design",
+      "web"
+    ],
+    "health": {
+      "lastMergedPrDays": 30,
+      "responseHours": 48,
+      "mergedPrs30d": 3,
+      "hasContributing": false
+    },
+    "readme": "# css-garden\nA collection of small CSS demos.",
+    "contributing": null
+  }
+}
