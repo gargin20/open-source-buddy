@@ -6,7 +6,7 @@ Welcome to the Hack Day! If this is your first open source contribution, you are
 
 1. **Fork** this repository (button at the top right on GitHub).
 2. **Clone** your fork and run the app (see the [README](README.md)).
-3. **Pick one issue** from the Issues tab. Comment "I'd like to work on this" so others know.
+3. **Pick one issue** from the Issues tab. No need to claim it: several teams can work on the same issue.
 4. Create a **branch**: `git checkout -b fix/short-description`
 5. Make a **small, focused change** that solves only that issue.
 6. Commit and push to your fork.
@@ -22,7 +22,7 @@ Every issue has exactly one tag:
 
 | Tag | Points | Expected time |
 |---|---|---|
-| `documentation` | 5 | under 1 hour |
+| `documentation` | 1 | under 1 hour |
 | `beginner` | 10 | under 1 hour |
 | `hard` | 20 | 3 to 5 hours |
 
