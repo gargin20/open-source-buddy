@@ -75,7 +75,32 @@ code {
 .topbar-actions {
   margin-left: auto;
   display: flex;
+  align-items: center;
   gap: 8px;
+}
+
+.auth-control {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.auth-control a {
+  text-decoration: none;
+}
+
+.auth-message {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.auth-error {
+  flex-basis: 100%;
+  color: var(--poor);
+  font-size: 0.8rem;
+  text-align: right;
 }
 
 .tabs {

@@ -3,11 +3,11 @@ import path from 'node:path';
 import { config } from '../config.js';
 
 // Saved issues are kept per user in one JSON file: { "<userId>": [issue, ...] }
-const FILE = path.join(config.dataDir, 'saved.json');
+const getFile = () => path.join(config.dataDir, 'saved.json');
 
 async function readAll() {
   try {
-    return JSON.parse(await fs.readFile(FILE, 'utf8'));
+    return JSON.parse(await fs.readFile(getFile(), 'utf8'));
   } catch (err) {
     if (err.code === 'ENOENT') return {};
     throw err;
@@ -16,7 +16,7 @@ async function readAll() {
 
 async function writeAll(data) {
   await fs.mkdir(config.dataDir, { recursive: true });
-  await fs.writeFile(FILE, JSON.stringify(data, null, 2));
+  await fs.writeFile(getFile(), JSON.stringify(data, null, 2));
 }
 
 export async function listSaved(userId) {

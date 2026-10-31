@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    res.json({ items: await listSaved(getCurrentUserId(req)) });
+    res.json({ items: await listSaved(getCurrentUserId(req, res)) });
   } catch (err) {
     next(err);
   }
@@ -18,7 +18,7 @@ router.post('/', async (req, res, next) => {
     if (!issue || issue.id == null) {
       return res.status(400).json({ error: 'Body must include an issue with an id' });
     }
-    const items = await addSaved(getCurrentUserId(req), issue);
+    const items = await addSaved(getCurrentUserId(req, res), issue);
     res.status(201).json({ items });
   } catch (err) {
     next(err);
@@ -27,7 +27,7 @@ router.post('/', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   try {
-    res.json({ items: await removeSaved(getCurrentUserId(req), req.params.id) });
+    res.json({ items: await removeSaved(getCurrentUserId(req, res), req.params.id) });
   } catch (err) {
     next(err);
   }
