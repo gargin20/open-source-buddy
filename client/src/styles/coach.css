@@ -1,0 +1,174 @@
+.coach {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.coach-intro {
+  margin-bottom: 16px;
+}
+
+.coach-intro h2 {
+  font-size: 1.25rem;
+}
+
+.coach-intro p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.coach-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  gap: 16px;
+  align-items: start;
+}
+
+.coach-editor,
+.coach-results {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.coach-editor label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.coach-editor textarea {
+  width: 100%;
+  min-height: 360px;
+  resize: vertical;
+  background: var(--surface);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px;
+  font: inherit;
+  line-height: 1.45;
+}
+
+.coach-editor textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.coach-editor-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.coach-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.coach-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.coach-summary h3 {
+  font-size: 1rem;
+}
+
+.coach-summary span {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.coach-summary span.complete {
+  color: var(--good);
+}
+
+.coach-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.coach-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.coach-check.pass {
+  border-color: var(--good);
+}
+
+.coach-check.fail {
+  border-color: var(--poor);
+}
+
+.coach-status {
+  flex: none;
+  width: 18px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.coach-check.pass .coach-status {
+  color: var(--good);
+}
+
+.coach-check.fail .coach-status {
+  color: var(--poor);
+}
+
+.coach-label {
+  margin: 0;
+  font-weight: 600;
+}
+
+.coach-state {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.coach-check.pass .coach-state {
+  color: var(--good);
+}
+
+.coach-check.fail .coach-state {
+  color: var(--poor);
+}
+
+.coach-tip {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.coach-done {
+  margin: 12px 0 0;
+  color: var(--good);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 860px) {
+  .coach-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
