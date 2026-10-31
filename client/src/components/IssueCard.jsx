@@ -1,7 +1,7 @@
 import HealthBadge from './HealthBadge.jsx';
 import { formatAge } from '../utils/formatAge.js';
 
-export default function IssueCard({ issue, active, onSelect, onSave }) {
+export default function IssueCard({ issue, active, saved, onSelect, onSave }) {
   return (
     <article className={active ? 'issue-card active' : 'issue-card'}>
       <h3>
@@ -25,8 +25,8 @@ export default function IssueCard({ issue, active, onSelect, onSave }) {
       </div>
       <div className="card-footer">
         <HealthBadge repo={issue.repo} />
-        <button className="btn" onClick={onSave}>
-          ☆ Save
+        <button className="btn" onClick={onSave} disabled={saved}>
+          {saved ? '★ Saved' : '☆ Save'}
         </button>
       </div>
     </article>

@@ -25,7 +25,7 @@ export default function App() {
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [selected, setSelected] = useState(null); // { issue, index }
   const { data, loading, error } = useIssues(filters);
-  const { saved, save, remove } = useSaved();
+  const { saved, save, remove, isSaved } = useSaved();
 
   useEffect(() => {
     getStatus().then(setStatus).catch(() => {});
@@ -80,6 +80,7 @@ export default function App() {
                   key={issue.id}
                   issue={issue}
                   active={selected?.issue.id === issue.id}
+                  saved={isSaved(issue.id)}
                   onSelect={() => setSelected({ issue, index })}
                   onSave={() => save(issue)}
                 />
