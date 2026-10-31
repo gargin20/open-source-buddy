@@ -1,5 +1,9 @@
 async function request(path, options = {}) {
-  const res = await fetch(path, { headers: { 'Content-Type': 'application/json' }, ...options });
+  const res = await fetch(path, {
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    ...options,
+  });
   if (!res.ok) {
     let message = `Request failed (${res.status})`;
     try {
@@ -10,6 +14,7 @@ async function request(path, options = {}) {
     }
     throw new Error(message);
   }
+  if (res.status === 204) return null;
   return res.json();
 }
 
@@ -28,9 +33,26 @@ export const getHealth = (repo) => request(`/api/repos/${repo}/health`);
 export const explainIssue = (issue) =>
   request('/api/explain', { method: 'POST', body: JSON.stringify({ issue }) });
 
-export const getSaved = () => request('/api/saved');
+export const getSaved = async () => {
+  const data = await request('/api/saved');
+  return { items: Array.isArray(data) ? data : (data?.items || []) };
+};
 
 export const saveIssue = (issue) =>
   request('/api/saved', { method: 'POST', body: JSON.stringify({ issue }) });
 
 export const unsaveIssue = (id) => request(`/api/saved/${encodeURIComponent(id)}`, { method: 'DELETE' });
+
+export async function getCurrentUser() {
+  const response = await fetch('/api/auth/me', { credentials: 'include' });
+  if (!response.ok) return null;
+  const data = await response.json();
+  return data.user ?? null;
+}
+
+export async function logout() {
+  await fetch('/api/auth/logout', {
+    method: 'POST',
+    credentials: 'include',
+  });
+}

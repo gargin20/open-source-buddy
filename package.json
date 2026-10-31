@@ -12,6 +12,9 @@
     "build": "npm run build -w client",
     "test": "npm test -w server"
   },
+  "dependencies": {
+    "express-session": "^1.19.0"
+  },
   "devDependencies": {
     "concurrently": "^8.2.2"
   }

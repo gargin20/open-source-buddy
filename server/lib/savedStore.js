@@ -1,39 +1,70 @@
-import fs from 'node:fs/promises';
+import fsPromises from 'node:fs/promises';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { config } from '../config.js';
 
-// Saved issues are kept per user in one JSON file: { "<userId>": [issue, ...] }
-const FILE = path.join(config.dataDir, 'saved.json');
+const DATA_DIR = config?.dataDir || path.resolve(process.cwd(), 'server/data');
+const SAVED_FILE = path.join(DATA_DIR, 'saved.json');
 
-async function readAll() {
+async function readDatabase() {
   try {
-    return JSON.parse(await fs.readFile(FILE, 'utf8'));
-  } catch (err) {
-    if (err.code === 'ENOENT') return {};
-    throw err;
+    const raw = await fsPromises.readFile(SAVED_FILE, 'utf8');
+    const parsed = JSON.parse(raw);
+
+    if (Array.isArray(parsed)) {
+      return { anonymous: parsed };
+    }
+
+    if (parsed && typeof parsed === 'object') {
+      return parsed;
+    }
+
+    return {};
+  } catch (error) {
+    if (error.code === 'ENOENT') return {};
+    throw error;
   }
 }
 
-async function writeAll(data) {
-  await fs.mkdir(config.dataDir, { recursive: true });
-  await fs.writeFile(FILE, JSON.stringify(data, null, 2));
+async function writeDatabase(database) {
+  await fsPromises.mkdir(DATA_DIR, { recursive: true });
+  await fsPromises.writeFile(SAVED_FILE, JSON.stringify(database, null, 2), 'utf8');
 }
 
-export async function listSaved(userId) {
-  const all = await readAll();
-  return all[userId] || [];
+export async function listSaved(userId = 'anonymous') {
+  const database = await readDatabase();
+  return Array.isArray(database[userId]) ? database[userId] : [];
 }
 
-export async function addSaved(userId, issue) {
-  const all = await readAll();
-  all[userId] = [...(all[userId] || []), issue];
-  await writeAll(all);
-  return all[userId];
+export async function addSaved(userId = 'anonymous', issue) {
+  const database = await readDatabase();
+  const existing = Array.isArray(database[userId]) ? database[userId] : [];
+
+  const saved = {
+    id: crypto.randomUUID(),
+    savedAt: new Date().toISOString(),
+    userId,
+    issue,
+    ...issue,
+  };
+
+  database[userId] = [...existing, saved];
+  await writeDatabase(database);
+  return saved;
 }
 
-export async function removeSaved(userId, id) {
-  const all = await readAll();
-  all[userId] = (all[userId] || []).filter((item) => String(item.id) !== String(id));
-  await writeAll(all);
-  return all[userId];
+export async function removeSaved(userId = 'anonymous', id) {
+  const database = await readDatabase();
+  const existing = Array.isArray(database[userId]) ? database[userId] : [];
+  const next = existing.filter(
+    (item) => item.id !== id && String(item.id) !== String(id) && String(item.issue?.id) !== String(id)
+  );
+
+  if (next.length === existing.length) {
+    return false;
+  }
+
+  database[userId] = next;
+  await writeDatabase(database);
+  return true;
 }

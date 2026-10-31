@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { config } from '../config.js';
+import auth from './auth.js';
 import issues from './issues.js';
 import health from './health.js';
 import explain from './explain.js';
@@ -13,6 +14,7 @@ router.get('/status', (req, res) => {
   res.json({ githubMode: config.githubMode, aiProvider: config.aiProvider });
 });
 
+router.use('/auth', auth);
 router.use('/issues', issues);
 router.use('/repos', health);
 router.use('/explain/stream', explainStream);
