@@ -1,0 +1,145 @@
+.pr-coach {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.pr-coach-header {
+  margin-bottom: 20px;
+}
+
+.pr-coach-header h2 {
+  font-size: 1.4rem;
+}
+
+.pr-coach-header p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.pr-coach-header .pr-coach-privacy {
+  font-size: 0.85rem;
+}
+
+.pr-coach-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.85fr);
+  align-items: start;
+  gap: 20px;
+}
+
+.pr-coach-editor,
+.pr-coach-results {
+  min-width: 0;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.pr-coach-editor label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.pr-coach-editor textarea {
+  display: block;
+  width: 100%;
+  min-height: 280px;
+  resize: vertical;
+  padding: 10px 12px;
+  background: var(--surface);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font: inherit;
+  line-height: 1.5;
+}
+
+.pr-coach-editor textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.pr-coach-count {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.pr-coach-results-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.pr-coach-results-header h3 {
+  font-size: 1.05rem;
+}
+
+.pr-coach-score {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.pr-coach-empty {
+  margin: 12px 0;
+  padding: 10px;
+  color: var(--muted);
+  background: var(--bg);
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.pr-coach-checks {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pr-coach-check {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--poor);
+  border-radius: 6px;
+}
+
+.pr-coach-check.is-passed {
+  border-left-color: var(--good);
+}
+
+.pr-coach-check-heading {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pr-coach-state {
+  color: var(--poor);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.is-passed .pr-coach-state {
+  color: var(--good);
+}
+
+.pr-coach-check p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 760px) {
+  .pr-coach-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
