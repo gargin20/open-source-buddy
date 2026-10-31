@@ -15,4 +15,8 @@ export const config = {
   ollamaUrl: process.env.OLLAMA_URL || 'http://localhost:11434',
   perPage: 6,
   dataDir: path.join(__dirname, 'data'),
+  rateLimitMax: Number(process.env.RATE_LIMIT_MAX) || 100,
+  rateLimitWindowMs: Number(process.env.RATE_LIMIT_WINDOW_MS) || 60 * 1000,
+  explainRateLimitMax: Number(process.env.EXPLAIN_RATE_LIMIT_MAX) || 10,
+  explainRateLimitWindowMs: Number(process.env.EXPLAIN_RATE_LIMIT_WINDOW_MS) || 60 * 1000,
 };
