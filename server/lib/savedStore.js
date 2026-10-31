@@ -4,6 +4,16 @@ import { config } from '../config.js';
 
 // Saved issues are kept per user in one JSON file: { "<userId>": [issue, ...] }
 const FILE = path.join(config.dataDir, 'saved.json');
+let storeOperations = Promise.resolve();
+
+function withStoreLock(operation) {
+  const result = storeOperations.then(operation);
+  storeOperations = result.then(
+    () => undefined,
+    () => undefined,
+  );
+  return result;
+}
 
 async function readAll() {
   try {
@@ -20,20 +30,29 @@ async function writeAll(data) {
 }
 
 export async function listSaved(userId) {
-  const all = await readAll();
-  return all[userId] || [];
+  return withStoreLock(async () => {
+    const all = await readAll();
+    return all[userId] || [];
+  });
 }
 
 export async function addSaved(userId, issue) {
-  const all = await readAll();
-  all[userId] = [...(all[userId] || []), issue];
-  await writeAll(all);
-  return all[userId];
+  return withStoreLock(async () => {
+    const all = await readAll();
+    const saved = all[userId] || [];
+    if (saved.some((item) => String(item.id) === String(issue.id))) return saved;
+
+    all[userId] = [...saved, issue];
+    await writeAll(all);
+    return all[userId];
+  });
 }
 
 export async function removeSaved(userId, id) {
-  const all = await readAll();
-  all[userId] = (all[userId] || []).filter((item) => String(item.id) !== String(id));
-  await writeAll(all);
-  return all[userId];
+  return withStoreLock(async () => {
+    const all = await readAll();
+    all[userId] = (all[userId] || []).filter((item) => String(item.id) !== String(id));
+    await writeAll(all);
+    return all[userId];
+  });
 }
