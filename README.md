@@ -3,7 +3,7 @@
 An AI-assisted web app that helps beginners **find, understand and start** their first open source contribution.
 
 - Browse and search issues, filter by language and topic
-- Check a repo's health before you invest a weekend (last merged PR, maintainer response time, CONTRIBUTING.md)
+- Check a repo's [health score](docs/health-score.md) before you invest a weekend (last merged PR, maintainer response time, CONTRIBUTING.md)
 - Press **Explain this issue** to get a plain-English summary, likely files and a starting plan
 - Save issues for later, switch between light and dark themes
 
