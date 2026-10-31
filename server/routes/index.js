@@ -5,6 +5,7 @@ import health from './health.js';
 import explain from './explain.js';
 import explainStream from './explainStream.js';
 import saved from './saved.js';
+import { explainRateLimit } from '../middleware/rateLimit.js';
 
 const router = Router();
 
@@ -15,8 +16,8 @@ router.get('/status', (req, res) => {
 
 router.use('/issues', issues);
 router.use('/repos', health);
-router.use('/explain/stream', explainStream);
-router.use('/explain', explain);
+router.use('/explain/stream', explainRateLimit, explainStream);
+router.use('/explain', explainRateLimit, explain);
 router.use('/saved', saved);
 
 export default router;
