@@ -24,8 +24,9 @@ export default function App() {
   const [tab, setTab] = useState('issues');
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [selected, setSelected] = useState(null); // { issue, index }
-  const { data, loading, error } = useIssues(filters);
+  const { data, loading, error, retry } = useIssues(filters);
   const { saved, save, remove } = useSaved();
+  const savedIds = new Set(saved.map((issue) => String(issue.id)));
 
   useEffect(() => {
     getStatus().then(setStatus).catch(() => {});
@@ -67,7 +68,10 @@ export default function App() {
             {loading && <Spinner />}
             {error && (
               <div className="error" role="alert">
-                Could not load issues: {error}
+                <span>Could not load issues: {error}</span>
+                <button className="btn" onClick={retry} disabled={loading}>
+                  Retry
+                </button>
               </div>
             )}
             {!loading && !error && data.items.length === 0 && (
@@ -80,6 +84,7 @@ export default function App() {
                   key={issue.id}
                   issue={issue}
                   active={selected?.issue.id === issue.id}
+                  isSaved={savedIds.has(String(issue.id))}
                   onSelect={() => setSelected({ issue, index })}
                   onSave={() => save(issue)}
                 />
