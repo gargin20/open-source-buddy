@@ -51,3 +51,25 @@ pre.plain {
   font: inherit;
   margin: 8px 0 0;
 }
+
+/* Copy plan button */
+.btn-copy-plan {
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--accent);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.btn-copy-plan:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-copy-plan:active {
+  opacity: 0.8;
+}
