@@ -4,7 +4,7 @@ import ExplainPanel from './ExplainPanel.jsx';
 import TrackButton from './TrackButton.jsx';
 
 export default function IssueDetail({ issue, issues, index, onClose }) {
-  const { result, loading, error, explain, reset } = useExplain();
+const { result, loading, error, explain, reset, cancel } = useExplain();
 
   useEffect(() => {
     reset();
@@ -31,7 +31,7 @@ export default function IssueDetail({ issue, issues, index, onClose }) {
         </button>
         <TrackButton issue={issue} />
       </div>
-      <ExplainPanel result={result} error={error} />
+      <ExplainPanel result={result} error={error} loading={loading} cancel={cancel} />
     </aside>
   );
 }
