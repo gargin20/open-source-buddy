@@ -73,6 +73,7 @@ export class LiveGitHubProvider extends GitHubProvider {
         topics: info?.topics || [],
         comments: item.comments,
         createdAt: item.created_at,
+        updatedAt: item.updated_at,
       };
     });
   }

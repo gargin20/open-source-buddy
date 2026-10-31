@@ -46,8 +46,31 @@
   color: var(--muted);
 }
 
-pre.plain {
-  white-space: pre-wrap;
-  font: inherit;
-  margin: 8px 0 0;
+.markdown {
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
+
+.markdown > :first-child {
+  margin-top: 0;
+}
+
+.markdown > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown pre {
+  overflow-x: auto;
+  padding: 10px;
+  border-radius: 6px;
+  background: var(--bg);
+}
+
+.markdown pre code {
+  display: block;
+  padding: 0;
+}
+
+.markdown code {
+  overflow-wrap: anywhere;
 }

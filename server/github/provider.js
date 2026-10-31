@@ -7,7 +7,8 @@
 //
 // Issue shape:
 //   { id, number, title, body, repo: "owner/name", url, labels: string[],
-//     language, topics: string[], comments, createdAt (ISO string) }
+//     language, topics: string[], comments, createdAt (ISO string),
+//     updatedAt (ISO string, optional) }
 export class GitHubProvider {
   get name() {
     throw new Error('Provider must define a name');
