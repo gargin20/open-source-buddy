@@ -13,6 +13,7 @@ export const config = {
   geminiApiKey: process.env.GEMINI_API_KEY || '',
   groqApiKey: process.env.GROQ_API_KEY || '',
   ollamaUrl: process.env.OLLAMA_URL || 'http://localhost:11434',
+  ollamaModel: process.env.OLLAMA_MODEL || 'llama3.2',
   perPage: 6,
   dataDir: path.join(__dirname, 'data'),
 };
