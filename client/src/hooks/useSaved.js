@@ -6,7 +6,7 @@ export function useSaved() {
 
   const refresh = useCallback(() => {
     return getSaved()
-      .then((res) => setSaved(res.items))
+      .then((res) => setSaved(Array.isArray(res) ? res : (res?.items || [])))
       .catch(() => {});
   }, []);
 

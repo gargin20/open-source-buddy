@@ -1,10 +1,37 @@
 import express from 'express';
+import session from 'express-session';
+import cors from 'cors';
 import { config } from './config.js';
+import { currentUser } from './auth/currentUser.js';
 import { rateLimit } from './middleware/rateLimit.js';
+import authRoutes from './routes/auth.js';
 import apiRouter from './routes/index.js';
 
 const app = express();
+
+app.use(cors({
+  origin: config.appBaseUrl,
+  credentials: true,
+}));
+
 app.use(express.json({ limit: '200kb' }));
+
+app.use(session({
+  name: 'osb_session',
+  secret: config.sessionSecret,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: config.isProduction,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
+}));
+
+app.use(currentUser);
+
+app.use('/api/auth', authRoutes);
 app.use('/api', rateLimit, apiRouter);
 
 app.use((req, res) => {
