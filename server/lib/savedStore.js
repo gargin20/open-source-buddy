@@ -26,7 +26,10 @@ export async function listSaved(userId) {
 
 export async function addSaved(userId, issue) {
   const all = await readAll();
-  all[userId] = [...(all[userId] || []), issue];
+  const items = all[userId] || [];
+  // Saving an issue that is already saved does nothing.
+  if (items.some((item) => String(item.id) === String(issue.id))) return items;
+  all[userId] = [...items, issue];
   await writeAll(all);
   return all[userId];
 }
