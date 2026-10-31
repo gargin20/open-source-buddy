@@ -229,3 +229,46 @@ select {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ── Auth button ─────────────────────────────────────────────────────────── */
+.auth-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+}
+
+.auth-name {
+  font-size: 0.9rem;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.auth-signin {
+  font-size: 0.85rem;
+  padding: 5px 10px;
+}
+
+.auth-signout {
+  font-size: 0.8rem;
+  padding: 4px 8px;
+}
+
+.auth-signed-out {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-error {
+  font-size: 0.8rem;
+  color: var(--poor);
+}
