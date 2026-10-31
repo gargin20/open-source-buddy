@@ -37,9 +37,18 @@ cp .env.example .env      # on Windows: copy .env.example .env
 ```
 
 - `GITHUB_MODE=live` uses the real GitHub API. It works without a token (60 requests/hour). Add `GITHUB_TOKEN` for more.
-- `AI_PROVIDER=mock` is the only AI provider that is implemented. It builds the explanation from the issue's own title, labels and body.
+- `AI_PROVIDER=mock` works without a key. `AI_PROVIDER=ollama` uses a local Ollama server and needs no API key. Gemini and Groq are still stubs.
 
 Keys and tokens live only in the server's `.env` file. They are never sent to the browser.
+
+## Ollama setup
+
+[Ollama](https://ollama.com/download) runs models on your own machine, so no API key is needed.
+
+1. Install Ollama and start it with `ollama serve`.
+2. Pull a model, for example `ollama pull llama3.2`.
+3. Set `AI_PROVIDER=ollama` in `.env`. `OLLAMA_URL` defaults to `http://localhost:11434` and `OLLAMA_MODEL` defaults to `llama3.2`.
+4. Restart the server. If the server cannot reach Ollama, the Explain panel shows a clear connection error.
 
 ## Project structure
 
@@ -57,7 +66,7 @@ open-source-buddy/
 │   ├── index.js             app entry point
 │   ├── config.js            reads .env
 │   ├── routes/              /api/issues, /api/repos, /api/explain, /api/saved
-│   ├── ai/                  AI provider interface + mock (Gemini, Groq, Ollama are stubs)
+│   ├── ai/                  AI provider interface, mock and Ollama (Gemini and Groq are stubs)
 │   ├── github/              GitHub provider interface + mock + live
 │   ├── lib/                 filtering, pagination, health score, saved-issue storage
 │   ├── auth/                who is the current user
