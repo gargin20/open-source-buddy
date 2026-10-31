@@ -37,7 +37,9 @@ cp .env.example .env      # on Windows: copy .env.example .env
 ```
 
 - `GITHUB_MODE=live` uses the real GitHub API. It works without a token (60 requests/hour). Add `GITHUB_TOKEN` for more.
-- `AI_PROVIDER=mock` is the only AI provider that is implemented. It builds the explanation from the issue's own title, labels and body.
+- `AI_PROVIDER=mock` (default) builds the explanation offline from the issue's own title, labels and body without needing an API key.
+- `AI_PROVIDER=gemini` connects to the Google Gemini API to generate intelligent summaries and starting plans. Set `GEMINI_API_KEY` in `.env` (obtain a free key at [Google AI Studio](https://aistudio.google.com/)). Optionally configure `GEMINI_MODEL` (defaults to `gemini-1.5-flash`).
+- `AI_PROVIDER=groq` and `AI_PROVIDER=ollama` are stubs reserved for future implementation.
 
 Keys and tokens live only in the server's `.env` file. They are never sent to the browser.
 
@@ -57,7 +59,7 @@ open-source-buddy/
 │   ├── index.js             app entry point
 │   ├── config.js            reads .env
 │   ├── routes/              /api/issues, /api/repos, /api/explain, /api/saved
-│   ├── ai/                  AI provider interface + mock (Gemini, Groq, Ollama are stubs)
+│   ├── ai/                  AI provider interface + mock + gemini (Groq, Ollama are stubs)
 │   ├── github/              GitHub provider interface + mock + live
 │   ├── lib/                 filtering, pagination, health score, saved-issue storage
 │   ├── auth/                who is the current user
