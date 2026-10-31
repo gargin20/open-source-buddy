@@ -10,9 +10,22 @@ export const config = {
   githubMode: (process.env.GITHUB_MODE || 'mock').toLowerCase(),
   githubToken: process.env.GITHUB_TOKEN || '',
   aiProvider: (process.env.AI_PROVIDER || 'mock').toLowerCase(),
-  geminiApiKey: process.env.GEMINI_API_KEY || '',
-  groqApiKey: process.env.GROQ_API_KEY || '',
-  ollamaUrl: process.env.OLLAMA_URL || 'http://localhost:11434',
+
+  geminiApiKey: process.env.GEMINI_API_KEY,
+  geminiModel: process.env.GEMINI_MODEL || 'gemini-1.5-flash',
+  geminiBaseUrl: process.env.GEMINI_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta',
+  geminiTimeoutMs: Number(process.env.GEMINI_TIMEOUT_MS || 120000),
+
+  groqApiKey: process.env.GROQ_API_KEY,
+  groqModel: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
+  groqBaseUrl: process.env.GROQ_BASE_URL || 'https://api.groq.com/openai/v1',
+  groqTimeoutMs: Number(process.env.GROQ_TIMEOUT_MS || 120000),
+
+  ollamaBaseUrl: process.env.OLLAMA_BASE_URL || process.env.OLLAMA_URL || 'http://127.0.0.1:11434',
+  ollamaModel: process.env.OLLAMA_MODEL || 'llama3.2',
+  ollamaTimeoutMs: Number(process.env.OLLAMA_TIMEOUT_MS || 120000),
+  ollamaUrl: process.env.OLLAMA_BASE_URL || process.env.OLLAMA_URL || 'http://127.0.0.1:11434',
+
   perPage: 6,
   dataDir: path.join(__dirname, 'data'),
 };
