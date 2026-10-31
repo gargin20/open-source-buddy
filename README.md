@@ -1,5 +1,7 @@
 # Open Source Buddy
 
+हिंदी में पढ़ें: [README.hi.md](README.hi.md)
+
 An AI-assisted web app that helps beginners **find, understand and start** their first open source contribution.
 
 - Browse and search issues, filter by language and topic
