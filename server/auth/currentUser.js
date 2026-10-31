@@ -1,6 +1,7 @@
-// TODO: GitHub OAuth login. Once users can sign in, return the id of the
-// signed-in user (for example from a session cookie) so saved issues are
-// stored per user. Until then everyone shares one anonymous bucket.
+import { getSession } from './session.js';
+
+// Returns the signed-in GitHub login, or 'anonymous' if not signed in.
 export function getCurrentUserId(req) {
-  return 'anonymous';
+  const session = getSession(req);
+  return session?.userId || 'anonymous';
 }
