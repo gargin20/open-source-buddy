@@ -1,5 +1,7 @@
 # Open Source Buddy
 
+[English](README.md) | [हिन्दी (Hindi)](README.hi.md)
+
 An AI-assisted web app that helps beginners **find, understand and start** their first open source contribution.
 
 - Browse and search issues, filter by language and topic
@@ -76,6 +78,10 @@ open-source-buddy/
 | GET | `/api/repos/:owner/:name/health` | Repo health metrics and score |
 | POST | `/api/explain` | Body `{ "issue": {...} }`, returns the AI explanation |
 | GET / POST / DELETE | `/api/saved` | List, add (`POST`) or remove (`DELETE /api/saved/:id`) saved issues |
+
+## Contributing
+
+Contributions are welcome! Please check out [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines on how to fork, pick an issue, and submit a pull request.
 
 ## License
 
