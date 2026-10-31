@@ -1,12 +1,41 @@
 import { Router } from 'express';
+import ai from '../ai/index.js';
 
 const router = Router();
 
-// TODO: stream the explanation to the browser while it is being generated
-// (Server-Sent Events or a chunked response). Use ai.explainStream(issue, opts),
-// which is an async generator that yields pieces of text.
-router.post('/', (req, res) => {
-  res.status(501).json({ error: 'Streaming is not implemented yet' });
+router.post('/', async (req, res) => {
+  const { issue } = req.body || {};
+  if (!issue) {
+    return res.status(400).json({ error: 'Body must include an issue' });
+  }
+
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache, no-transform',
+    Connection: 'keep-alive',
+  });
+
+  let closed = false;
+  req.on('close', () => {
+    closed = true;
+  });
+
+  try {
+    const stream = ai.explainStream(issue);
+    for await (const chunk of stream) {
+      if (closed) break;
+      res.write(`data: ${JSON.stringify({ text: chunk })}\n\n`);
+    }
+    if (!closed) {
+      res.write('data: [DONE]\n\n');
+      res.end();
+    }
+  } catch (err) {
+    if (!closed) {
+      res.write(`data: ${JSON.stringify({ error: err.message })}\n\n`);
+      res.end();
+    }
+  }
 });
 
 export default router;
