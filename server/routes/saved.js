@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getCurrentUserId } from '../auth/currentUser.js';
-import { listSaved, addSaved, removeSaved } from '../lib/savedStore.js';
+import { listSaved, addSaved, removeSaved, clearSaved } from '../lib/savedStore.js';
 
 const router = Router();
 
@@ -20,6 +20,14 @@ router.post('/', async (req, res, next) => {
     }
     const items = await addSaved(getCurrentUserId(req), issue);
     res.status(201).json({ items });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete('/', async (req, res, next) => {
+  try {
+    res.json({ items: await clearSaved(getCurrentUserId(req)) });
   } catch (err) {
     next(err);
   }

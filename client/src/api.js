@@ -34,3 +34,5 @@ export const saveIssue = (issue) =>
   request('/api/saved', { method: 'POST', body: JSON.stringify({ issue }) });
 
 export const unsaveIssue = (id) => request(`/api/saved/${encodeURIComponent(id)}`, { method: 'DELETE' });
+
+export const clearAllSaved = () => request('/api/saved', { method: 'DELETE' });
