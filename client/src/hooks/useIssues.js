@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { getIssues } from '../api.js';
 
 const EMPTY = { items: [], total: 0, page: 1, perPage: 6, totalPages: 1 };
@@ -7,6 +7,7 @@ export function useIssues(params) {
   const [data, setData] = useState(EMPTY);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [retryCount, setRetryCount] = useState(0);
   const key = JSON.stringify(params);
 
   useEffect(() => {
@@ -21,13 +22,16 @@ export function useIssues(params) {
       })
       .catch((err) => {
         if (cancelled) return;
-        setError(err.message);
+        setError(err.message ?? 'Failed to load issues.');
+        setLoading(false);
       });
     return () => {
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key]);
+  }, [key, retryCount]);
 
-  return { data, loading, error };
+  const retry = useCallback(() => setRetryCount((n) => n + 1), []);
+
+  return { data, loading, error, retry };
 }
