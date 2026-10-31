@@ -1,19 +1,24 @@
 import { config } from '../config.js';
 import { MockAIProvider } from './mock.js';
-import { GeminiProvider } from './gemini.js';
-import { GroqProvider } from './groq.js';
-import { OllamaProvider } from './ollama.js';
+import { OllamaAIProvider } from './ollama.js';
+import { GeminiAIProvider } from './gemini.js';
+import { GroqAIProvider } from './groq.js';
 
 const providers = {
   mock: MockAIProvider,
-  gemini: GeminiProvider,
-  groq: GroqProvider,
-  ollama: OllamaProvider,
+  ollama: OllamaAIProvider,
+  gemini: GeminiAIProvider,
+  groq: GroqAIProvider,
 };
 
-const Provider = providers[config.aiProvider];
-if (!Provider) {
-  throw new Error(`Unknown AI_PROVIDER "${config.aiProvider}". Use: ${Object.keys(providers).join(', ')}`);
+export function createProvider(name = config.aiProvider, providerConfig = config) {
+  const Provider = providers[name];
+
+  if (!Provider) {
+    throw new Error(`Unknown AI provider: ${name}`);
+  }
+
+  return new Provider(providerConfig);
 }
 
-export default new Provider();
+export default createProvider(config.aiProvider, config);
