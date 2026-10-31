@@ -212,6 +212,27 @@ select {
   padding: 10px 12px;
   border-radius: 6px;
   margin: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.retry-btn {
+  margin-left: auto;
+  background: none;
+  border: 1px solid var(--poor);
+  color: var(--poor);
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font: inherit;
+  white-space: nowrap;
+}
+
+.retry-btn:hover {
+  background: var(--poor);
+  color: var(--surface);
 }
 
 .empty {

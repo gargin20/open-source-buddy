@@ -24,7 +24,7 @@ export default function App() {
   const [tab, setTab] = useState('issues');
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [selected, setSelected] = useState(null); // { issue, index }
-  const { data, loading, error } = useIssues(filters);
+  const { data, loading, error, retry } = useIssues(filters);
   const { saved, save, remove } = useSaved();
 
   useEffect(() => {
@@ -67,7 +67,14 @@ export default function App() {
             {loading && <Spinner />}
             {error && (
               <div className="error" role="alert">
-                Could not load issues: {error}
+                <span>Could not load issues: {error}</span>
+                <button
+                  onClick={retry}
+                  className="retry-btn"
+                  aria-label="Retry loading issues"
+                >
+                  Retry
+                </button>
               </div>
             )}
             {!loading && !error && data.items.length === 0 && (
