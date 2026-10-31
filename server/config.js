@@ -11,6 +11,7 @@ export const config = {
   githubToken: process.env.GITHUB_TOKEN || '',
   aiProvider: (process.env.AI_PROVIDER || 'mock').toLowerCase(),
   geminiApiKey: process.env.GEMINI_API_KEY || '',
+  geminiModel: process.env.GEMINI_MODEL || 'gemini-2.5-flash',
   groqApiKey: process.env.GROQ_API_KEY || '',
   ollamaUrl: process.env.OLLAMA_URL || 'http://localhost:11434',
   perPage: 6,
