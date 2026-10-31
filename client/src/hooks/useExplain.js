@@ -1,23 +1,72 @@
-import { useState } from 'react';
-import { explainIssue } from '../api.js';
+import { useRef, useState } from 'react';
+import { streamExplanation } from '../api.js';
 
-// TODO: stream the explanation instead of waiting for the whole answer, so the
-// text appears while it is being written. The server side lives in
-// server/routes/explainStream.js.
 export function useExplain() {
   const [state, setState] = useState({ result: null, loading: false, error: null });
+  const controllerRef = useRef(null);
 
   async function explain(issue) {
-    setState({ result: null, loading: true, error: null });
+    controllerRef.current?.abort();
+    const controller = new AbortController();
+    controllerRef.current = controller;
+
+    setState({
+      result: { markdown: '', plan: [], provider: null },
+      loading: true,
+      error: null,
+    });
+
     try {
-      const result = await explainIssue(issue);
-      setState({ result, loading: false, error: null });
+      await streamExplanation(issue, {
+        signal: controller.signal,
+        onStart: (data) => {
+          if (controllerRef.current !== controller) return;
+          setState((prev) => ({
+            ...prev,
+            result: { ...prev.result, provider: data.provider },
+          }));
+        },
+        onChunk: (text) => {
+          if (controllerRef.current !== controller) return;
+          setState((prev) => ({
+            ...prev,
+            result: { ...prev.result, markdown: prev.result.markdown + text },
+          }));
+        },
+      });
+
+      if (controllerRef.current === controller) {
+        setState((prev) => ({ ...prev, loading: false }));
+      }
     } catch (err) {
-      setState({ result: null, loading: false, error: err.message });
+      if (controllerRef.current !== controller) return;
+      if (err.name === 'AbortError') {
+        setState((prev) => ({ ...prev, loading: false }));
+        return;
+      }
+      setState({
+        result: null,
+        loading: false,
+        error: err.message || 'Could not stream the explanation',
+      });
+    } finally {
+      if (controllerRef.current === controller) controllerRef.current = null;
     }
   }
 
-  const reset = () => setState({ result: null, loading: false, error: null });
+  function cancel() {
+    const controller = controllerRef.current;
+    if (!controller) return;
+    controllerRef.current = null;
+    controller.abort();
+    setState((prev) => ({ ...prev, loading: false }));
+  }
 
-  return { ...state, explain, reset };
+  const reset = () => {
+    controllerRef.current?.abort();
+    controllerRef.current = null;
+    setState({ result: null, loading: false, error: null });
+  };
+
+  return { ...state, explain, cancel, reset };
 }

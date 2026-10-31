@@ -4,7 +4,7 @@ import ExplainPanel from './ExplainPanel.jsx';
 import TrackButton from './TrackButton.jsx';
 
 export default function IssueDetail({ issue, issues, index, onClose }) {
-  const { result, loading, error, explain, reset } = useExplain();
+  const { result, loading, error, explain, cancel, reset } = useExplain();
 
   useEffect(() => {
     reset();
@@ -27,8 +27,13 @@ export default function IssueDetail({ issue, issues, index, onClose }) {
       <p className="body">{issue.body}</p>
       <div className="detail-actions">
         <button className="btn primary" onClick={() => explain(issues[index] ?? issue)} disabled={loading}>
-          {loading ? 'Thinking…' : 'Explain this issue'}
+          {loading ? 'Writing…' : result ? 'Explain again' : 'Explain this issue'}
         </button>
+        {loading && (
+          <button className="btn" onClick={cancel}>
+            Cancel
+          </button>
+        )}
         <TrackButton issue={issue} />
       </div>
       <ExplainPanel result={result} error={error} />
