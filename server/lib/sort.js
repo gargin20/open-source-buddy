@@ -1,6 +1,12 @@
-// TODO: support sorting. `sort` comes from the query string and can be
-// "newest", "oldest" or "comments" (most commented first). Return a NEW array
-// and keep the original order for an empty or unknown value.
 export function sortIssues(issues, sort) {
-  return issues;
+  if (sort === 'newest') {
+    return [...issues].sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+  }
+  if (sort === 'oldest') {
+    return [...issues].sort((a, b) => new Date(a.created_at || 0) - new Date(b.created_at || 0));
+  }
+  if (sort === 'comments') {
+    return [...issues].sort((a, b) => (b.comments || 0) - (a.comments || 0));
+  }
+  return [...issues];
 }
