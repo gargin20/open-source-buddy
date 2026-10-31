@@ -1,10 +1,13 @@
-// Common interface every AI provider implements.
+// Common interface every AI provider implements. See docs/adding-an-ai-provider.md
+// for provider registration, configuration, and testing instructions.
 //
-//   explain(issue, { context })  -> { markdown: string, plan: string[] }
-//   explainStream(issue, opts)   -> async generator that yields strings
+// Providers must expose a string `name` and implement:
+//   explain(issue, opts) -> { markdown: string, plan: string[] }
 //
 // `issue` has: title, body, labels (string[]), repo, language, topics.
-// `context` is optional extra text (for example the repo's README).
+// `opts.context` is optional extra text (for example the repo's README).
+// Providers may override explainStream(issue, opts) to yield markdown chunks.
+// The default implementation yields the complete explain() markdown once.
 export class AIProvider {
   get name() {
     throw new Error('Provider must define a name');
