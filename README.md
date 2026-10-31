@@ -1,3 +1,5 @@
+[📖 हिन्दी में पढ़ें (Read in Hindi)](README.hi.md)
+
 # Open Source Buddy
 
 An AI-assisted web app that helps beginners **find, understand and start** their first open source contribution.
