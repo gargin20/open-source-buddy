@@ -10,8 +10,9 @@ export function filterByQuery(issues, q) {
 }
 
 export function filterByLanguage(issues, language) {
-  if (!language) return issues;
-  return issues.filter((issue) => issue.language === language);
+  const wanted = String(language || '').trim().toLowerCase();
+  if (!wanted) return issues;
+  return issues.filter((issue) => String(issue.language || '').toLowerCase() === wanted);
 }
 
 export function filterByTopic(issues, topic) {
