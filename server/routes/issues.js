@@ -10,11 +10,17 @@ const router = Router();
 router.get('/', async (req, res, next) => {
   try {
     const { q = '', language = '', topic = '', sort = '', page = '1' } = req.query;
-    let items = await github.listIssues({ q, language, topic });
-    items = filterByLanguage(items, language);
+
+    // github.listIssues now returns { items, cached }
+    const { items: allItems, cached } = await github.listIssues({ q, language, topic });
+
+    let items = filterByLanguage(allItems, language);
     items = filterByTopic(items, topic);
     items = sortIssues(items, sort);
-    res.json(paginate(items, Number(page) || 1, config.perPage));
+
+    const result = paginate(items, Number(page) || 1, config.perPage);
+    // Surface cache status so the client / tests can see it
+    res.json({ ...result, cached });
   } catch (err) {
     next(err);
   }
