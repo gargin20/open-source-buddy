@@ -51,3 +51,33 @@ pre.plain {
   font: inherit;
   margin: 8px 0 0;
 }
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+.markdown-content h1 {
+  font-size: 1.15rem;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.markdown-content li {
+  margin-bottom: 4px;
+}
+
+.markdown-content code {
+  background: var(--surface-hover, rgba(0, 0, 0, 0.05));
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: monospace;
+}
