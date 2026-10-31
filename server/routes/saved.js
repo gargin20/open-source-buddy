@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getCurrentUserId } from '../auth/currentUser.js';
-import { listSaved, addSaved, removeSaved } from '../lib/savedStore.js';
+import { listSaved, addSaved, removeSaved, clearSaved } from '../lib/savedStore.js';
 
 const router = Router();
 
@@ -25,6 +25,17 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+// DELETE /api/saved — clear ALL saved issues for the current user
+router.delete('/', async (req, res, next) => {
+  try {
+    const items = await clearSaved(getCurrentUserId(req));
+    res.json({ items });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// DELETE /api/saved/:id — remove a single saved issue
 router.delete('/:id', async (req, res, next) => {
   try {
     res.json({ items: await removeSaved(getCurrentUserId(req), req.params.id) });

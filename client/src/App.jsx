@@ -25,7 +25,7 @@ export default function App() {
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [selected, setSelected] = useState(null); // { issue, index }
   const { data, loading, error } = useIssues(filters);
-  const { saved, save, remove } = useSaved();
+  const { saved, save, remove, clearAll } = useSaved();
 
   useEffect(() => {
     getStatus().then(setStatus).catch(() => {});
@@ -98,7 +98,7 @@ export default function App() {
                 onClose={() => setSelected(null)}
               />
             )}
-            <SavedSidebar saved={saved} onRemove={remove} />
+            <SavedSidebar saved={saved} onRemove={remove} onClearAll={clearAll} />
           </div>
         </main>
       )}
