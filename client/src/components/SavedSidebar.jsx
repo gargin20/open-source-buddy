@@ -11,7 +11,7 @@ export default function SavedSidebar({ saved, onRemove }) {
       {saved.length === 0 && <p className="empty">Nothing saved yet. Press Save on an issue.</p>}
       <ul>
         {saved.map((issue, i) => (
-          <li key={`${issue.id}-${i}`}>
+          <li key={issue.id}>
             <span>
               {issue.title}
               <small>{issue.repo}</small>
