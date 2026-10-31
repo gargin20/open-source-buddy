@@ -14,5 +14,6 @@ export const config = {
   groqApiKey: process.env.GROQ_API_KEY || '',
   ollamaUrl: process.env.OLLAMA_URL || 'http://localhost:11434',
   perPage: 6,
+  githubCacheTtlMs: Number(process.env.GITHUB_CACHE_TTL_MS) || 5 * 60 * 1000,
   dataDir: path.join(__dirname, 'data'),
 };

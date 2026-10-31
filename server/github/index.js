@@ -9,4 +9,4 @@ if (!['mock', 'live'].includes(config.githubMode)) {
 
 const provider = config.githubMode === 'live' ? new LiveGitHubProvider(config.githubToken) : new MockGitHubProvider();
 
-export default withCache(provider);
+export default withCache(provider, { ttlMs: config.githubCacheTtlMs });
