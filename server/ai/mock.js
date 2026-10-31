@@ -54,4 +54,22 @@ export class MockAIProvider extends AIProvider {
 
     return { issueTitle: issue.title, markdown, plan };
   }
+
+  // Yield the explanation in small chunks so the browser can render it while
+  // it is being written. The mock provider has no network call to stream from.
+  async *explainStream(issue, opts) {
+    const { markdown } = await this.explain(issue, opts);
+    const parts = markdown.match(/\S+\s*/g) || [markdown];
+    let buffer = '';
+
+    for (const part of parts) {
+      buffer += part;
+      if (buffer.length >= 20) {
+        yield buffer;
+        buffer = '';
+        await new Promise((resolve) => setTimeout(resolve, 20));
+      }
+    }
+    if (buffer) yield buffer;
+  }
 }
