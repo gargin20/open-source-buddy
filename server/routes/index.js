@@ -5,8 +5,10 @@ import health from './health.js';
 import explain from './explain.js';
 import explainStream from './explainStream.js';
 import saved from './saved.js';
+import { createAuthRouter } from './auth.js';
 
 const router = Router();
+router.use('/auth', createAuthRouter({ config }));
 
 // Only non-secret information is exposed here.
 router.get('/status', (req, res) => {

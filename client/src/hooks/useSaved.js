@@ -14,6 +14,11 @@ export function useSaved() {
     refresh();
   }, [refresh]);
 
+  useEffect(() => {
+    window.addEventListener('osb:authchange', refresh);
+    return () => window.removeEventListener('osb:authchange', refresh);
+  }, [refresh]);
+
   const save = async (issue) => {
     await saveIssue(issue);
     await refresh();

@@ -10,6 +10,7 @@ async function request(path, options = {}) {
     }
     throw new Error(message);
   }
+  if (res.status === 204) return null;
   return res.json();
 }
 
@@ -34,3 +35,7 @@ export const saveIssue = (issue) =>
   request('/api/saved', { method: 'POST', body: JSON.stringify({ issue }) });
 
 export const unsaveIssue = (id) => request(`/api/saved/${encodeURIComponent(id)}`, { method: 'DELETE' });
+
+export const getAuth = () => request('/api/auth/me');
+
+export const signOut = () => request('/api/auth/logout', { method: 'POST' });
