@@ -13,6 +13,8 @@ export const config = {
   geminiApiKey: process.env.GEMINI_API_KEY || '',
   groqApiKey: process.env.GROQ_API_KEY || '',
   ollamaUrl: process.env.OLLAMA_URL || 'http://localhost:11434',
+  githubClientId: process.env.GITHUB_CLIENT_ID || '',
+  githubClientSecret: process.env.GITHUB_CLIENT_SECRET || '',
   perPage: 6,
   dataDir: path.join(__dirname, 'data'),
 };

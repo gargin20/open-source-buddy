@@ -1,3 +1,4 @@
+import auth from './auth.js';
 import { Router } from 'express';
 import { config } from '../config.js';
 import issues from './issues.js';
@@ -18,5 +19,6 @@ router.use('/repos', health);
 router.use('/explain/stream', explainStream);
 router.use('/explain', explain);
 router.use('/saved', saved);
+router.use('/auth', auth);
 
 export default router;
