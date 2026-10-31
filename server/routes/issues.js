@@ -9,7 +9,9 @@ const router = Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const { q = '', language = '', topic = '', sort = '', page = '1' } = req.query;
+    const { q = '', topic = '', sort = '', page = '1' } = req.query;
+    // Trimmed so live mode does not send "language: X " to the GitHub search API.
+    const language = String(req.query.language || '').trim();
     let items = await github.listIssues({ q, language, topic });
     items = filterByLanguage(items, language);
     items = filterByTopic(items, topic);
