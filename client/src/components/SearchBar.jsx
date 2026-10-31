@@ -5,8 +5,7 @@ export default function SearchBar({ onSearch }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const q = new FormData(e.currentTarget).get('q') ?? '';
-    onSearch(String(q).trim());
+    onSearch(text.trim());
   }
 
   return (
@@ -19,7 +18,7 @@ export default function SearchBar({ onSearch }) {
         placeholder="Search issues, e.g. tests, README, docs"
         aria-label="Search issues"
       />
-      <button type="button" className="btn primary" onClick={() => onSearch(text.trim())}>
+      <button type="submit" className="btn primary">
         Search
       </button>
     </form>
