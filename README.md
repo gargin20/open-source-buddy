@@ -37,9 +37,26 @@ cp .env.example .env      # on Windows: copy .env.example .env
 ```
 
 - `GITHUB_MODE=live` uses the real GitHub API. It works without a token (60 requests/hour). Add `GITHUB_TOKEN` for more.
-- `AI_PROVIDER=mock` is the only AI provider that is implemented. It builds the explanation from the issue's own title, labels and body.
+- `AI_PROVIDER=mock` works without a key. `AI_PROVIDER=gemini` uses the Gemini API and needs `GEMINI_API_KEY`. Groq and Ollama are still stubs.
 
 Keys and tokens live only in the server's `.env` file. They are never sent to the browser.
+
+## AI providers
+
+| `AI_PROVIDER` | Status | Setup |
+|---|---|---|
+| `mock` | works offline | none |
+| `gemini` | implemented | set `GEMINI_API_KEY` |
+| `groq` | stub | not implemented yet |
+| `ollama` | stub | not implemented yet |
+
+To use Gemini:
+
+1. Create a key at https://aistudio.google.com/apikey.
+2. Set `AI_PROVIDER=gemini` and `GEMINI_API_KEY=<your key>` in `.env`.
+3. Restart the server. `GEMINI_MODEL` defaults to `gemini-2.5-flash`; set it to use another model.
+
+The key is read by the server only and is never sent to the browser. If the key is missing or Gemini fails, the Explain panel shows the error message.
 
 ## Project structure
 
@@ -57,7 +74,7 @@ open-source-buddy/
 │   ├── index.js             app entry point
 │   ├── config.js            reads .env
 │   ├── routes/              /api/issues, /api/repos, /api/explain, /api/saved
-│   ├── ai/                  AI provider interface + mock (Gemini, Groq, Ollama are stubs)
+│   ├── ai/                  AI provider interface, mock and Gemini (Groq and Ollama are stubs)
 │   ├── github/              GitHub provider interface + mock + live
 │   ├── lib/                 filtering, pagination, health score, saved-issue storage
 │   ├── auth/                who is the current user
