@@ -1,13 +1,17 @@
 export function paginate(items, page, perPage) {
-  const totalPages = Math.max(1, Math.ceil(items.length / perPage));
-  const current = Math.min(Math.max(1, page), totalPages);
-  const start = Math.max(0, (current - 1) * perPage - 1);
-  const end = start + perPage;
+  const limit= Math.max(1, Math.floor(number(perPage)||1));
+  const totalPages = Math.max(1,Math.ceil(items.length/limit));
+  const requestedpage=number.isFinite(Number(page))
+  ?Math.floor(Number(page)):1;
+  const current=Math.min(
+    Math.max(1,requestedpage),totalPages);
+    const start=(current-1)*limit;
+    const end=start+limit;
   return {
     items: items.slice(start, end),
     total: items.length,
     page: current,
-    perPage,
+    perPage:limit,
     totalPages,
   };
 }
