@@ -22,6 +22,7 @@ export function useIssues(params) {
       .catch((err) => {
         if (cancelled) return;
         setError(err.message);
+        setLoading(false);
       });
     return () => {
       cancelled = true;
