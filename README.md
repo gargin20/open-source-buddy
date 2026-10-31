@@ -9,6 +9,18 @@ An AI-assisted web app that helps beginners **find, understand and start** their
 
 This repo is the starter project for the **Hacktoberfest Hack Day at NIT Jamshedpur**. See [CONTRIBUTING.md](CONTRIBUTING.md) to take part.
 
+
+## Screenshots
+
+### Issue Browser & Filters
+![Issue Browser](docs/screenshots/issues-list.png)
+
+### AI Explanation & Action Plan
+![AI Explanation](docs/screenshots/explanation-panel.png)
+
+### Dark Mode
+![Dark Mode](docs/screenshots/dark-mode.png)
+
 ## Run it
 
 You need **Node.js 20 or newer** (works on Windows, macOS and Linux). No database and no API keys are needed.
@@ -80,3 +92,24 @@ open-source-buddy/
 ## License
 
 [MIT](LICENSE)
+
+
+## Troubleshooting
+
+### Port already in use (`EADDRINUSE: 3001` or `5173`)
+If the server or Vite port is in use:
+- Check for running processes on port 3001 or 5173.
+- On Windows: `netstat -ano | findstr :3001` and kill using `taskkill /PID <PID> /F`.
+- Or set `PORT=3002` in `.env` to run the backend on a different port.
+
+### Unsupported Node.js version
+Open Source Buddy requires **Node.js 20 or newer** for modern ECMAScript modules, the native Node test runner, and global `fetch`.
+- Check your version: `node -v`
+- Switch versions using NVM: `nvm use 20` or download the latest LTS from [nodejs.org](https://nodejs.org).
+
+### Windows `npm install` or script execution errors
+If PowerShell blocks running scripts:
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+Then run `npm install` again.
