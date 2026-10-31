@@ -207,11 +207,19 @@ select {
 }
 
 .error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   border: 1px solid var(--poor);
   color: var(--poor);
   padding: 10px 12px;
   border-radius: 6px;
   margin: 8px 0;
+}
+
+.error .btn {
+  white-space: nowrap;
 }
 
 .empty {
