@@ -37,3 +37,10 @@ export async function removeSaved(userId, id) {
   await writeAll(all);
   return all[userId];
 }
+
+export async function clearSaved(userId) {
+  const all = await readAll();
+  all[userId] = [];
+  await writeAll(all);
+  return [];
+}

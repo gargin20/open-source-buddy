@@ -5,6 +5,7 @@ import health from './health.js';
 import explain from './explain.js';
 import explainStream from './explainStream.js';
 import saved from './saved.js';
+import auth from './auth.js';
 
 const router = Router();
 
@@ -13,6 +14,7 @@ router.get('/status', (req, res) => {
   res.json({ githubMode: config.githubMode, aiProvider: config.aiProvider });
 });
 
+router.use('/auth', auth);
 router.use('/issues', issues);
 router.use('/repos', health);
 router.use('/explain/stream', explainStream);

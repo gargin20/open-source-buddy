@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { getSaved, saveIssue, unsaveIssue } from '../api.js';
+import { getSaved, saveIssue, unsaveIssue, clearSavedIssues } from '../api.js';
 
 export function useSaved() {
   const [saved, setSaved] = useState([]);
@@ -24,5 +24,10 @@ export function useSaved() {
     await refresh();
   };
 
-  return { saved, save, remove };
+  const clearAll = async () => {
+    await clearSavedIssues();
+    setSaved([]);
+  };
+
+  return { saved, save, remove, clearAll };
 }

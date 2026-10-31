@@ -1,10 +1,16 @@
-export default function SavedSidebar({ saved, onRemove }) {
+export default function SavedSidebar({ saved, onRemove, onClearAll }) {
+  const handleClearAll = () => {
+    if (saved.length === 0) return;
+    if (window.confirm('Remove all saved issues?')) {
+      onClearAll();
+    }
+  };
+
   return (
     <aside className="sidebar" aria-label="Saved issues">
       <div className="sidebar-head">
         <h2>Saved ({saved.length})</h2>
-        {/* TODO: clear all saved issues (ask for confirmation first). */}
-        <button className="btn" onClick={() => {}}>
+        <button className="btn" onClick={handleClearAll} disabled={saved.length === 0}>
           Clear saved
         </button>
       </div>

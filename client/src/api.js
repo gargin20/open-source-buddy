@@ -34,3 +34,9 @@ export const saveIssue = (issue) =>
   request('/api/saved', { method: 'POST', body: JSON.stringify({ issue }) });
 
 export const unsaveIssue = (id) => request(`/api/saved/${encodeURIComponent(id)}`, { method: 'DELETE' });
+
+export const clearSavedIssues = () => request('/api/saved', { method: 'DELETE' });
+
+export const getMe = () => request('/api/auth/me');
+
+export const logout = () => request('/api/auth/logout', { method: 'POST' });
