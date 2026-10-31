@@ -1,10 +1,12 @@
 import { Router } from 'express';
 import { config } from '../config.js';
+import { explainRateLimit } from '../middleware/rateLimit.js';
 import issues from './issues.js';
 import health from './health.js';
 import explain from './explain.js';
 import explainStream from './explainStream.js';
 import saved from './saved.js';
+import auth from './auth.js';
 
 const router = Router();
 
@@ -13,10 +15,12 @@ router.get('/status', (req, res) => {
   res.json({ githubMode: config.githubMode, aiProvider: config.aiProvider });
 });
 
+router.use('/auth', auth);
 router.use('/issues', issues);
 router.use('/repos', health);
-router.use('/explain/stream', explainStream);
-router.use('/explain', explain);
+// Stricter rate limit for AI explain endpoints
+router.use('/explain/stream', explainRateLimit, explainStream);
+router.use('/explain', explainRateLimit, explain);
 router.use('/saved', saved);
 
 export default router;
