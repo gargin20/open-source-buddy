@@ -5,6 +5,7 @@ import './styles/theme.css';
 import './styles/cards.css';
 import './styles/sidebar.css';
 import './styles/detail.css';
+import './styles/prcoach.css';
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
